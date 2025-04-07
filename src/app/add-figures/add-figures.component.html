@@ -1,0 +1,46 @@
+<form [formGroup]="figureForm" >
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Введість кількість фігур для створення</ion-card-title>
+    </ion-card-header> 
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Кількість окружностей"
+          formControlName="circlesNumber"
+          labelPlacement="floating"
+          errorText="Кількість фігур повинна бути від 1 до 100"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Кількість еліпсів"
+          formControlName="ellipsesNumber"
+          labelPlacement="floating"
+          errorText="Кількість фігур повинна бути від 1 до 100"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Кількість кілець"
+          formControlName="ringsNumber"
+          labelPlacement="floating"
+          errorText="Кількість фігур повинна бути від 1 до 100"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-button
+    type="submit"
+    (click)="onSubmit()"
+    [disabled]="figureForm.invalid"
+  >
+    Додати
+  </ion-button>
+</form>

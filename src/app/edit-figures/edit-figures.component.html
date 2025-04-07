@@ -1,0 +1,34 @@
+<form [formGroup]="figureForm" (ngSubmit)="onSubmit()">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Відредагувати X та Y</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="X"
+          formControlName="x"
+          labelPlacement="floating"
+          errorText="X має бути від 1 до 100"
+          [value]="figure.getX()"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input
+          label="Y"
+          formControlName="y"
+          labelPlacement="floating"
+          errorText="Y має бути від 1 до 100"
+          [value]="figure.getY()"
+          type="number"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+  <ion-button type ="submit" (click)="onSubmit()">
+    Відредагувати
+  </ion-button>
+</form>

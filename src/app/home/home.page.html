@@ -1,20 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title> Модульний контроль 1</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="tertiary">
+    <ion-title> Виконала студентка АнД-31 Деркач Анастасія Володимирівна</ion-title>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title> Завдання. Створити клас точка і дочірні від нього - окружність, кільце і еліпс.<br> Визначити конструктори, методи розрахунку площини. Визначити методи перевстановлення центру кола, кільця і еліпса. <br>
+      Розробити сервіс для проведення обчислень та для роботи зі списком фігур.
+      Користувач повинен ввести кількість фігур кожного типу.
+      </ion-title>
+  </ion-toolbar>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+  <app-add-figures
+  (figureAdd) ="addFigure($event)"
+  >
+
+  </app-add-figures>
+
+  <ion-card *ngFor="let figure of figureReadService.figures; index as i">
+    <ion-card-header>
+      <ion-card-title>{{ figure.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item> R: {{ figure.getR()}}</ion-item>
+      <ion-item> S: {{ figure.getS() }}</ion-item>
+      <ion-item> X: {{ figure.getX() }}</ion-item>
+      <ion-item> Y: {{ figure.getY() }}</ion-item>
+      <ion-item *ngIf="figure.getName() == 'Ellipse' "> Другий радіус {{figure.getSpecificAttributes()}}</ion-item>
+      <ion-item *ngIf="figure.getName() == 'Ring' "> Більший радіус {{figure.getSpecificAttributes()}}</ion-item>
+    </ion-card-content>
+    <ion-button (click)="editFormShow(i)">
+      Редагувати Х та Y 
+    </ion-button>
+    <app-edit-figures
+    *ngIf="showEditForm && i == editFormNumber"
+    (figureEdit)="editFigure($event, i)"
+    [figure] = "figure"
+    >
+
+    </app-edit-figures>
+  </ion-card>
 </ion-content>
